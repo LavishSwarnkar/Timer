@@ -18,8 +18,13 @@ class TimerViewModel: ViewModel() {
 
     fun resume() {
         tickingJob = viewModelScope.launch {
-            while (state.value.isNotComplete()) {
+            while (true) {
                 state.value = state.value.tick()
+
+                if (state.value.state == Timer.State.COMPLETE) {
+                    break
+                }
+
                 Log.i("MTT", "${state.value}")
                 delay(1)
             }
@@ -35,6 +40,12 @@ class TimerViewModel: ViewModel() {
     fun stop() {
         tickingJob.cancel()
         state.value = state.value.stop()
+        Log.i("MTT", "${state.value}")
+    }
+
+    fun restart() {
+        state.value = Timer()
+        resume()
         Log.i("MTT", "${state.value}")
     }
 

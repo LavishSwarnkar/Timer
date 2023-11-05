@@ -10,7 +10,7 @@ import com.lavish.timer.feature.timer.Timer.State.RUNNING
 fun Timer.stateActionIcon(): Int {
     return when (state) {
         RUNNING -> R.drawable.ic_pause
-        NEW, PAUSED, COMPLETE -> R.drawable.ic_play
+        NEW, PAUSED, COMPLETE -> R.drawable.ic_resume
     }
 }
 

@@ -34,25 +34,36 @@ fun TimerActions(
         horizontalArrangement = Arrangement.SpaceEvenly
     ) {
 
-        // Resume / Pause
-        TimerActionButton(
-            icon = timer.stateActionIcon(),
-            label = timer.stateActionLabel(),
-            onClick = {
-                when (timer.state) {
-                    RUNNING -> viewModel.pause()
-                    NEW, PAUSED, COMPLETE -> viewModel.resume()
-                }
-            }
-        )
+        if (timer.state == COMPLETE) {
 
-        // Stop
-        TimerActionButton(
-            icon = R.drawable.ic_stop_enabled,
-            disabledIcon = R.drawable.ic_stop_disabled,
-            label = "Stop",
-            enabled = timer.isRunningOrPaused(),
-            onClick = viewModel::stop
-        )
+            // Restart
+            TimerActionButton(
+                icon = R.drawable.ic_restart,
+                label = "Restart",
+                onClick = viewModel::restart
+            )
+        } else {
+
+            // Resume / Pause
+            TimerActionButton(
+                icon = timer.stateActionIcon(),
+                label = timer.stateActionLabel(),
+                onClick = {
+                    when (timer.state) {
+                        RUNNING -> viewModel.pause()
+                        NEW, PAUSED, COMPLETE -> viewModel.resume()
+                    }
+                }
+            )
+
+            // Stop
+            TimerActionButton(
+                icon = R.drawable.ic_stop_enabled,
+                disabledIcon = R.drawable.ic_stop_disabled,
+                label = "Stop",
+                enabled = timer.isRunningOrPaused(),
+                onClick = viewModel::stop
+            )
+        }
     }
 }
