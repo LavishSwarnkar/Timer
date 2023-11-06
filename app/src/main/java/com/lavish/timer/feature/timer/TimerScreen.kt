@@ -27,7 +27,7 @@ fun TimerScreen(
         TimerComp(
             modifier = Modifier
                 .fillMaxWidth(),
-            timer = viewModel.state.value
+            timerStateFlow = viewModel.stateFlow
         )
 
         Spacer(modifier = Modifier.size(50.dp))

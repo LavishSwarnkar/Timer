@@ -1,31 +1,28 @@
 package com.lavish.timer.feature.timer
 
-import android.util.Log
-import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.lavish.timer.feature.timer.ext.isNotComplete
-import com.lavish.timer.feature.timer.ext.isRunning
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 class TimerViewModel: ViewModel() {
 
-    val state = mutableStateOf(Timer())
+    private val mutableStateFlow = MutableStateFlow(Timer())
+    val stateFlow: StateFlow<Timer> = mutableStateFlow
 
     private lateinit var tickingJob: Job
 
     fun resume() {
         tickingJob = viewModelScope.launch {
             while (true) {
-                state.value = state.value.tick()
+                val newState = mutableStateFlow.value.tick()
+                mutableStateFlow.emit(newState)
 
-                if (state.value.state == Timer.State.COMPLETE) {
-                    break
-                }
+                if (newState.state == Timer.State.COMPLETE) break
 
-                Log.i("MTT", "${state.value}")
                 delay(1)
             }
         }
@@ -33,20 +30,21 @@ class TimerViewModel: ViewModel() {
 
     fun pause() {
         tickingJob.cancel()
-        state.value = state.value.pause()
-        Log.i("MTT", "${state.value}")
+        viewModelScope.launch {
+            mutableStateFlow.emit(mutableStateFlow.value.pause())
+        }
     }
 
     fun stop() {
         tickingJob.cancel()
-        state.value = state.value.stop()
-        Log.i("MTT", "${state.value}")
+        viewModelScope.launch {
+            mutableStateFlow.emit(mutableStateFlow.value.stop())
+        }
     }
 
     fun restart() {
-        state.value = Timer()
+        mutableStateFlow.value = Timer()
         resume()
-        Log.i("MTT", "${state.value}")
     }
 
 }
