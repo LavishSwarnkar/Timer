@@ -8,9 +8,9 @@ import androidx.compose.ui.Modifier
 import com.lavish.timer.R
 import com.lavish.timer.feature.timer.Timer.State.*
 import com.lavish.timer.feature.timer.TimerViewModel
-import com.lavish.timer.feature.timer.ext.isRunningOrPaused
-import com.lavish.timer.feature.timer.ext.stateActionIcon
-import com.lavish.timer.feature.timer.ext.stateActionLabel
+import com.lavish.timer.other.ext.isRunningOrPaused
+import com.lavish.timer.other.ext.stateActionIcon
+import com.lavish.timer.other.ext.stateActionLabel
 
 @Composable
 fun TimerActions(

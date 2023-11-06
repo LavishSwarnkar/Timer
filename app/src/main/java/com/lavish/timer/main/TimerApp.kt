@@ -1,4 +1,4 @@
-package com.lavish.timer
+package com.lavish.timer.main
 
 import android.app.Application
 import com.lavish.timer.di.appModule

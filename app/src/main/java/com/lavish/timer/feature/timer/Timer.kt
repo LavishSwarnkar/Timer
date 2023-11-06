@@ -1,6 +1,6 @@
 package com.lavish.timer.feature.timer
 
-import com.lavish.timer.util.TimeFormatter
+import com.lavish.timer.other.util.TimeFormatter
 
 data class Timer(
     val state: State = State.NEW,
@@ -44,12 +44,8 @@ data class Timer(
         return Timer()
     }
 
-    override fun toString(): String {
-        return "Timer(state=$state, end=$end, tickInMillis=$tickInMillis, time='$time', percentageLeft=$portionLeft)"
-    }
-
     companion object {
-//        const val DURATION = 1 * 60 * 1000L
-        const val DURATION = 5 * 1000L
+        const val DURATION = 1 * 60 * 1000L
+        const val DURATION_TEXT = "1 minute"
     }
 }

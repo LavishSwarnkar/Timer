@@ -1,4 +1,4 @@
-package com.lavish.timer.feature.timer.ext
+package com.lavish.timer.other.ext
 
 import com.lavish.timer.R
 import com.lavish.timer.feature.timer.Timer

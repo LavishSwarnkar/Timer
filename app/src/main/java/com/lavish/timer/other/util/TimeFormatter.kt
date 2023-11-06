@@ -1,4 +1,4 @@
-package com.lavish.timer.util
+package com.lavish.timer.other.util
 
 object TimeFormatter {
     fun formatTime(timeInMillis: Long): String {

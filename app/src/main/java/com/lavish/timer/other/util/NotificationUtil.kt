@@ -1,4 +1,4 @@
-package com.lavish.timer.helper
+package com.lavish.timer.other.util
 
 import android.annotation.SuppressLint
 import android.app.NotificationChannel
@@ -16,11 +16,11 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.platform.LocalContext
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import com.lavish.timer.MainActivity
+import com.lavish.timer.main.MainActivity
 import com.lavish.timer.R
 import java.util.Random
 
-class NotificationHelper(
+class NotificationUtil(
     private val context: Context
 ) {
 

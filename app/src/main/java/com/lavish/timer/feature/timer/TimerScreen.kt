@@ -8,29 +8,23 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.Lifecycle
 import com.lavish.timer.feature.timer.comp.TimerActions
-import com.lavish.timer.feature.timer.comp.TimerComp
-import com.lavish.timer.helper.NotificationHelper
+import com.lavish.timer.feature.timer.comp.TimerView
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun TimerScreen(
     viewModel: TimerViewModel = koinViewModel()
 ) {
-    NotificationHelper.PermissionsSetup()
-
     Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp),
         verticalArrangement = Arrangement.Center
     ) {
-        TimerComp(
+        TimerView(
             modifier = Modifier
                 .fillMaxWidth(),
             timerStateFlow = viewModel.stateFlow

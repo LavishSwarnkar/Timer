@@ -1,4 +1,4 @@
-package com.lavish.timer.ui.theme
+package com.lavish.timer.main.ui.theme
 
 import android.app.Activity
 import android.os.Build

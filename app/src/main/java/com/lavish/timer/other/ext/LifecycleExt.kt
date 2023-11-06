@@ -1,4 +1,4 @@
-package com.lavish.timer.helper
+package com.lavish.timer.other.ext
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
