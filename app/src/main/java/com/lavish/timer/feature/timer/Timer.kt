@@ -50,6 +50,6 @@ data class Timer(
 
     companion object {
 //        const val DURATION = 1 * 60 * 1000L
-        const val DURATION = 15 * 1000L
+        const val DURATION = 5 * 1000L
     }
 }
