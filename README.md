@@ -3,6 +3,8 @@ A simple 1 minute countdown timer app which displays seconds and milliseconds al
 
 ## [APK Download link (v1.0)](https://drive.google.com/uc?export=download&id=16-zEsVk-s2CVeBf8cQ5gBQluA0m-Qhy5)
 
+## [Demo video](https://drive.google.com/file/d/1E-PljLNiMT-peY8TfBQnyNLpAi3Xl5OI/view?usp=sharing)
+
 ## Approach
 - Kotlin
 - MVVM Architecture
