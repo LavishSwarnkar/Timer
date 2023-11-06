@@ -1,12 +1,19 @@
 package com.lavish.timer.feature.timer.comp
 
+import android.util.Log
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.graphics.drawscope.rotate
 import com.lavish.timer.feature.timer.Timer
 
 @Composable
@@ -14,10 +21,39 @@ fun TimerComp(
     modifier: Modifier,
     timer: Timer
 ) {
+    val color = Color.Black.copy(alpha = 0.1f)
+    val color1 = MaterialTheme.colorScheme.primary
+
     Box(
-        modifier = modifier,
+        modifier = modifier
+            .aspectRatio(1f),
         contentAlignment = Alignment.Center
     ) {
+        val sweepAngle = animateFloatAsState(targetValue = -360f * timer.portionLeft, label = "Sweep")
+
+        Canvas(
+            modifier = Modifier.fillMaxSize(0.8f)
+        ) {
+            rotate(-90f) {
+                drawArc(
+                    color = color,
+                    size = size,
+                    style = Stroke(15f),
+                    startAngle = 0f,
+                    sweepAngle = 360f,
+                    useCenter = false
+                )
+                drawArc(
+                    color = color1,
+                    size = size,
+                    style = Stroke(15f),
+                    startAngle = 360f,
+                    sweepAngle = sweepAngle.value,
+                    useCenter = false
+                )
+            }
+        }
+
         Text(
             text = timer.time,
             style = MaterialTheme.typography.displayMedium

@@ -9,8 +9,7 @@ data class Timer(
 ) {
     val time: String = TimeFormatter.formatTime(tickInMillis)
 
-    val percentageLeft: Double =
-        (tickInMillis / DURATION.toDouble()) * 100
+    val portionLeft: Float = tickInMillis / DURATION.toFloat()
 
     enum class State {
         NEW, RUNNING, PAUSED, COMPLETE
@@ -45,7 +44,12 @@ data class Timer(
         return Timer()
     }
 
+    override fun toString(): String {
+        return "Timer(state=$state, end=$end, tickInMillis=$tickInMillis, time='$time', percentageLeft=$portionLeft)"
+    }
+
     companion object {
-        const val DURATION = 5 * 1000L
+//        const val DURATION = 1 * 60 * 1000L
+        const val DURATION = 15 * 1000L
     }
 }
