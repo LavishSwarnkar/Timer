@@ -2,16 +2,13 @@ package com.lavish.timer.feature.timer
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.lavish.timer.other.util.NotificationUtil
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
-class TimerViewModel(
-    private val notificationUtil: NotificationUtil
-): ViewModel() {
+class TimerViewModel : ViewModel() {
 
     private val mutableStateFlow = MutableStateFlow(Timer())
     val stateFlow: StateFlow<Timer> = mutableStateFlow
@@ -25,17 +22,12 @@ class TimerViewModel(
                 mutableStateFlow.emit(newState)
 
                 if (newState.state == Timer.State.COMPLETE) {
-                    showTimerStoppedNotification()
                     break
                 }
 
                 delay(1)
             }
         }
-    }
-
-    private fun showTimerStoppedNotification() {
-
     }
 
     fun pause() {
